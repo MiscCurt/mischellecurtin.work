@@ -22,34 +22,35 @@
 			<link rel="stylesheet" href="{{asset('bundles/app/css/style-desktop.css')}}" />
 		<!-- </noscript> -->
     </head>
-    <header>
+    <body class="{{bodyclass}}">
         <div id="wrapper">
             <div id="header-wrapper">
-    			<div class="container">
-    				<div id="header">
-    					<div id="logo">
-    						<h1><a href="#">Mischelle Curtin</a></h1>
-    					</div>
-    				</div>
-    			</div>
+                <div class="container">
+                    <div id="header">
+                        <div id="logo">
+                            <h1><a href="#">Mischelle Curtin</a></h1>
+                        </div>
+                    </div>
+                </div>
+                <div class="container">
+                    <nav id="nav">
+                        <ul>
+                            <li class="current_page_item"><a href="index.html">Homepage</a></li>
+                            <li><a href="threecolumn.html">Three Column</a></li>
+                            <li><a href="twocolumn1.html">Two Column #1</a></li>
+                            <li><a href="twocolumn2.html">Two Column #2</a></li>
+                            <li><a href="resume.html">Resume</a></li>
+                        </ul>
+                    </nav>
+                </div>
+                {% if bodyclass == 'homepage' %}
+                    {% block banner %}{% endblock %}
+                {% endif %}
             </div>
         </div>
-    </header>
-    <nav>
-        <div class="container">
-            <nav id="nav">
-                <ul>
-                    <li class="current_page_item"><a href="index.html">Homepage</a></li>
-                    <li><a href="threecolumn.html">Three Column</a></li>
-                    <li><a href="twocolumn1.html">Two Column #1</a></li>
-                    <li><a href="twocolumn2.html">Two Column #2</a></li>
-                    <li><a href="resume.html">Resume</a></li>
-                </ul>
-            </nav>
-        </div>
-    </nav>
-    <body class="{{bodyclass}}">
         {% block body %}{% endblock %}
-        {% block javascripts %}{% endblock %}
+        <div id="copyright" class="container">
+            Design: <a href="http://templated.co">TEMPLATED</a> Images: <a href="http://unsplash.com">Unsplash</a> (<a href="http://unsplash.com/cc0">CC0</a>)
+        </div>
     </body>
 </html>
