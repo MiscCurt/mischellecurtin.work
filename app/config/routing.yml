@@ -1,3 +1,9 @@
 app:
     resource: "@AppBundle/Controller/"
     type:     annotation
+site:
+    path:      /
+    defaults:  { _controller: AppBundle:Site:index }
+home:
+    path:      /home/{name}
+    defaults:  { _controller: AppBundle:Home:index }
