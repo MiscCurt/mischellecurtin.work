@@ -5,5 +5,17 @@ site:
     path:      /
     defaults:  { _controller: AppBundle:Site:index }
 home:
-    path:      /home/{name}
+    path:      /index
     defaults:  { _controller: AppBundle:Home:index }
+resume:
+    path:      /resume
+    defaults:  { _controller: AppBundle:Resume:display}
+    methods:   [GET]
+contact:
+    path:      /contact
+    defaults:  { _controller: AppBundle:Contact:display}
+    methods:   [GET]
+software:
+    path:      /
+    defaults:  { _controller: AppBundle:Site:create}
+    methods:   [GET]
