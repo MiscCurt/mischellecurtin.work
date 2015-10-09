@@ -5,7 +5,7 @@
 */
 
 skel.init({
-	prefix: '../css/style',
+	prefix: '/mischellecurtin.work/web/bundles/app/css/style',
 	resetCSS: true,
 	boxModel: 'border',
 	grid: {
