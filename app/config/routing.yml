@@ -1,11 +1,14 @@
 app:
     resource: "@AppBundle/Controller/"
     type:     annotation
-site:
-    path:      /
-    defaults:  { _controller: AppBundle:Site:index }
-home:
+# site:
+#     path:      /base
+#     defaults:  { _controller: AppBundle:Site:index }
+index:
     path:      /index
+    defaults:  { _controller: AppBundle:Home:index }
+home:
+    path:      /
     defaults:  { _controller: AppBundle:Home:index }
 resume:
     path:      /resume
@@ -16,6 +19,6 @@ contact:
     defaults:  { _controller: AppBundle:Contact:display}
     methods:   [GET]
 software:
-    path:      /
-    defaults:  { _controller: AppBundle:Site:create}
+    path:      /software
+    defaults:  { _controller: AppBundle:Software:display}
     methods:   [GET]
