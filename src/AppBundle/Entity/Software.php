@@ -18,12 +18,19 @@ class Software
     protected $id;
 
     /**
+     * @ORM\ManyToOne(targetEntity="Categories", inversedBy="software")
+     * @ORM\JoinColumn(name="category_id", referencedColumnName="category_id")
+     */
+    protected $categoryId;
+
+    /**
      * @ORM\Column (name = "software_name", type="string", length = 255)
      */
     protected $name;
 
     /**
-     * @ORM\Column (name = "software_version", type="string", length = 10)
+     * @ORM\Column (name = "software_version", type="string", length = 10,
+     *     nullable=true)
      */
     protected $version;
 
@@ -97,5 +104,29 @@ class Software
     public function getVersion()
     {
         return $this->version;
+    }
+
+    /**
+     * Set categoryId
+     *
+     * @param \AppBundle\Entity\Categories $categoryId
+     *
+     * @return Software
+     */
+    public function setCategoryId(\AppBundle\Entity\Categories $categoryId = null)
+    {
+        $this->categoryId = $categoryId;
+
+        return $this;
+    }
+
+    /**
+     * Get categoryId
+     *
+     * @return \AppBundle\Entity\Categories
+     */
+    public function getCategoryId()
+    {
+        return $this->categoryId;
     }
 }
