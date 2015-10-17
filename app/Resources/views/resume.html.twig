@@ -6,47 +6,46 @@
 			<div class="row skel-cell-important" id="content">
 				<div class="12u">
 					<section>
-						<div class="post">
+						<div class="resume">
 							<h2>Resume</h2>
 							<br>
 							<br>
-							<p class="subtitle">{{TECH}}</p>
-							<p>
-							Languages:  PHP (5.5), Python (2.7), R (3.1.1), MySQL (5.6), jQuery, AJAX<br>
-							Software / Tools:  Git, Jira<br>
-							Systems:  Windows , Mac OS X, Linux<br>
-							Databases:  SQL Server, Microsoft Access<br>
-							</p>
-							<p>&nbsp;</p>
-							<p class="subtitle">{{PRO}}</p>
-							<p><strong>LAMP CAMP / THE CRESCA GROUP</strong> (Current) <br>
-								LAMP Stack Developer <br><br>
-								•	Gather client requirements for sales pipeline and inventory management applications.<br>
-								•	Develop application architecture and create application code based on a proprietary MVC framework.<br>
-								•	Guide new developers on best practices and how to break down problems.<br>
-							</p>
-							<p>&nbsp;</p>
-							<p><strong>JOHN HANCOCK FINANCIAL SERVICES </strong>	(2001 - 2013)<br>
-								Technology Support Analyst <br><br>
-								•	Created and maintained Access databases, allowing employees to interact with company data extracts in a simple and straightforward manner.<br>
-								•	Played a key role in the successful conversion from ACT to PeopleSoft for sales tracking.  Responsibilities included participation in requirements gathering, developing user acceptance test scripts, overseeing test completion, and training.  <br>
-								•	Maintained PeopleSoft data integrity by generating error reports, reviewing information entries, resolving errors, and training users on proper input procedures.<br>
-								•	Provided a variety of weekly, monthly, quarterly, and annual regional sales reports as well as additional reports as requested.  <br>
-								•	Acted as local support for corporate technology upgrades related to phones, network, computers, and software.  Also ordered or purchased additional equipment as needed including video conference system, multifunction equipment, computers, cables, and projectors.  <br>
-								•	Provided computer, phone and mobile technology training for new employees and created detailed software and hardware user instructions.<br>
-							</p>
-							<p>&nbsp;</p>
-							<p><strong>MANULIFE FINANCIAL</strong>	(1995 - 2001)<br>
-								Senior Sales Coordinator <br><br>
-								•	Built relationships with numerous sales representatives and intermediaries.<br>
-								•	Maintained intermediary, client, proposal, and case information required in the generation of proposal packages.<br>
-								•	Reviewed sold case paperwork for completion prior to submitting to the New Business department.  <br>
-								•	Streamlined the processing of sold case paperwork by creating a report that interacted with tracking systems to allow the recording of information in one location, as opposed to manually writing on information sheets.<br>
-								•	Developed training plan and knowledge testing for administrative staff. <br>
-							</p>
-							<p>&nbsp;</p>
-							<p class="subtitle">{{ED}}</p>
-							<p>Bachelor of Arts (BA) in Business &amp; Behavioral Science, Oglethorpe University<br></p>
+								<p class="subtitle">{{TECH}}</p>
+								{% for cat in category %}
+									<div class="tech">
+										<p><span>{{cat.name}}</span></p>
+										<ul class = 'style7'>
+										    {% for item in software if item.categoryId.id == cat.id %}
+										        <li>{{item.name}} {% if item.version is not null %} ({{item.version}}) {% endif %} </li>
+										    {% endfor %}
+										</ul>
+									</div>
+								{% endfor %}
+							<br>
+							<div class='pro'>
+								<p>&nbsp;</p>
+								<p class="subtitle">{{PRO}}</p>
+								{% for emp in employer|reverse %}
+									<p>
+										<strong>{{emp.name|upper}}</strong>
+										{% if date(emp.start) > date(emp.end) %}
+											(Current)
+										{% else %}
+										({{emp.start|date('Y')}} - {{emp.end|date('Y')}})
+										{% endif %}
+										</p>
+									<p>{{emp.title}}</p>
+									<br>
+									<ul class = 'style8'>
+										{% for rep in responsibility if rep.employerId.id == emp.id %}
+											<li>{{rep.responsibility}}</li>
+										{% endfor %}
+									</ul>
+									<br>
+								{% endfor %}
+								<p class="subtitle">{{ED}}</p>
+								<p>Bachelor of Arts (BA) in Business &amp; Behavioral Science, Oglethorpe University<br></p>
+							</div>
 						</div>
 					</section>
 				</div>
