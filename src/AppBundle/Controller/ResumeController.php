@@ -5,6 +5,9 @@ namespace AppBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\VarDumper\VarDumper;
+use AppBundle\Entity\Software;
+use AppBundle\Entity\Categories;
 
 class ResumeController extends SiteController
 {
@@ -20,6 +23,34 @@ class ResumeController extends SiteController
             "ED" => "EDUCATION");
     }
 
+    public function getCategoryInformation()
+    {
+        return $this->getDoctrine()
+            ->getRepository('AppBundle:Categories')
+            ->findAll();
+    }
+
+    public function getSoftwareInformation()
+    {
+        return $this->getDoctrine()
+            ->getRepository('AppBundle:Software')
+            ->findAll();
+    }
+
+    public function getEmployerInformation()
+    {
+        return $this->getDoctrine()
+            ->getRepository('AppBundle:Employers')
+            ->findAll();
+    }
+
+    public function getResponsibilityInformation()
+    {
+        return $this->getDoctrine()
+            ->getRepository('AppBundle:Responsibilities')
+            ->findAll();
+    }
+
     /**
      *  This method gathers information and creates an array of variables
      *  to be used for information display.  It then passes those variables
@@ -31,7 +62,14 @@ class ResumeController extends SiteController
     {
         $renderArray = array_merge ($this->getUser(),
             array('bodyclass' => 'resume'),
-            $this->getResumeHeaders());
+            $this->getResumeHeaders(),
+            array('category' => $this->getCategoryInformation()),
+            array('software' => $this->getSoftwareInformation()),
+            array('employer' => $this->getEmployerInformation()),
+            array('responsibility' => $this->getResponsibilityInformation())
+        );
+        // $categoryArray = array('category' => $this->getCategoryInformation());
+// return VarDumper::dump($renderArray);
         return $this->render('resume.html.twig', $renderArray);
     }
 }
